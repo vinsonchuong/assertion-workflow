@@ -6,12 +6,12 @@ import {
   findElement
 } from 'puppet-strings'
 
-test('shows "Hello World!"', async t => {
+test('showing a Submit button', async t => {
   const electron = await openElectron('.', { flags: ['-r', '@babel/register'] })
   const [browserWindow] = await getTabs(electron)
 
-  const div = await findElement(browserWindow, 'div')
-  t.is(div.innerText, 'Hello World!')
+  const button = await findElement(browserWindow, 'button')
+  t.is(button.innerText, 'Submit')
 
   await closeBrowser(electron)
   t.pass()
