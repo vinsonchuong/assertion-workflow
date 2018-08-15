@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import cx from 'classnames'
-import Text from './text'
-import Assertions from './assertions'
-import Relationships from './relationships'
+import Text from '../text'
+import Assertions from '../assertions'
+import Relationships from '../relationships'
 
 class Workflow extends React.Component {
   constructor(props) {

@@ -2,6 +2,7 @@
 import * as React from 'react'
 import cx from 'classnames'
 import styled from 'styled-components'
+import HotKeys from '../hot-keys'
 
 class Assertions extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Assertions extends React.Component {
     this.state = {
       assertions: []
     }
-    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleHotKey = this.handleHotKey.bind(this)
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -28,14 +29,6 @@ class Assertions extends React.Component {
     }
 
     return state
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
   }
 
   toggleAssertion(selectedIndex) {
@@ -62,13 +55,11 @@ class Assertions extends React.Component {
     })
   }
 
-  handleKeyDown(e) {
+  handleHotKey(hotKey) {
     const { onRelationship } = this.props
     const { assertions } = this.state
 
-    if (e.ctrlKey && e.key === 'r') {
-      e.preventDefault()
-
+    if (hotKey === 'ctrl-2') {
       const selectedAssertions = assertions
         .filter(({ selected }) => selected)
         .map(({ text }) => text)
@@ -92,6 +83,8 @@ class Assertions extends React.Component {
 
     return (
       <div className={cx('assertions', className)}>
+        <HotKeys onHotKey={this.handleHotKey} />
+
         {assertions.map(({ originalText, selected, text }, index) => (
           <input
             key={originalText}

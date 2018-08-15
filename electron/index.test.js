@@ -6,7 +6,7 @@ import {
   findElement
 } from 'puppet-strings'
 
-test('showing a Submit button', async t => {
+test('opening the app in Electron', async t => {
   const electron = await openElectron('.', { flags: ['-r', '@babel/register'] })
   const [browserWindow] = await getTabs(electron)
 
